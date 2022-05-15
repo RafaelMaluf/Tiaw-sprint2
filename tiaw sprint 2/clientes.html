@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Clientes</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="dbfake.js"></script>
+
+  <head>
+
+  <body>
+    <header>
+      <nav class="menu-principal">
+        <ul>
+          <li> <button><a href="index.html"> Home </a></button> </li>
+          <li> <button><a href="produtos.html"> Produtos </a></button> </li>
+          <li> <button><a href="contatos.html"> Contato </a></button> </li>
+          <li> <button><a href="clientes.html"> clientes </a></button> </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <button onclick="getData()">Puxar Clientes</button>
+      <h1>Clientes</h1>
+      <div id="lista-clientes">
+        <div class="box-cliente">
+        </div>
+      </div>
+    </main>
+
+    <script>
+      var req = new XMLHttpRequest();
+      var url = 'https://randomuser.me/api/?results=10';
+
+      function processaDados() {
+        var dados = JSON.parse(req.responseText);
+        var saida = '';
+        for (i = 0; i < dados.results.length; i++) {
+          saida += `<div class="box-cliente">
+                  <img src="${dados.results[i].picture.medium}" alt="">
+                  <p>${dados.results[i].name.first} ${dados.results[i].name.first} </p>
+                  <p>Fone: ${dados.results[i].phone}</p>
+                  <p>${dados.results[i].location.city} - ${dados.results[i].location.state}</p>
+                  </div>`
+        }
+        document.getElementById('lista-clientes').innerHTML = saida;
+      }
+
+      function getData() {
+        req.onload = processaDados;
+        req.open('GET', url, true);
+        req.send();
+      }
+    </script>
+  </body>
