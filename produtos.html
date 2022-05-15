@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="dbprods.js"></script>
+    <head>
+
+    <body>
+        <header>
+            <nav class="menu-principal">
+                <ul>
+                    <li> <button><a href="index.html"> Home </a></button> </li>
+                    <li> <button><a href="produtos.html"> Produtos </a></button> </li>
+                    <li> <button><a href="contatos.html"> Contato </a></button> </li>
+                    <li> <button><a href="clientes.html"> clientes </a></button> </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Produtos</h1>
+            <div id="lista-produtos">
+            </div>
+        </main>
+<footer>Copyright 2022 (c) Price.ly</footer>
+            <script>
+            var prods = '';
+            for (i=0; i < db.dados.length; i++) {
+            prods += `<p class="produto-item">Produto: ${ db.dados[i].titulo } <br> <img src="${ db.dados[i].foto }" <p class="produto-item"> descricao : ${ db.dados[i].descricao } <br> <p class="produto-item"> categoria: ${ db.dados[i].categoria } <br> <p class="produto-item"> preco: ${ db.dados[i].preco } <br> </p>`;
+            }
+            document.getElementById('lista-produtos').innerHTML = prods;
+
+            </script>
+
+    </body>
+</head>
